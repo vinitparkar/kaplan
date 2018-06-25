@@ -1,0 +1,168 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Kaplan Challenge API
+  description: This is a Swagger spec for the Kaplan API Challenge which allows us to retrieve Assignments.
+# during dev, should point to your local machine
+host: localhost:8080
+# basePath prefixes all resource paths
+basePath: /api
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+  
+paths:
+  /assignments:
+    get:
+      summary: Get all Assignments
+      # used as the method name of the controller
+      # operationId: hello
+      # parameters:
+      #   - name: name
+      #     in: query
+      #     description: The name of the person to whom to say hello
+      #     required: false
+      #     type: string
+      responses:
+        "200":
+          description: A list of Assignments
+          schema:
+            $ref: "#/definitions/Assignments"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  # /swagger:
+  #   x-swagger-pipe: swagger_raw
+    # post:
+    #   summary: Create a new Assignment
+    #   parameters:
+    #     - name: name
+    #       in: body
+    #       description: The name of the assignment
+    #       required: true
+    #       type: string
+    #     - name: title
+    #       in: body
+    #       description: The title of the assignment
+    #       required: true
+    #       type: string
+    #     - name: description
+    #       in: body
+    #       description: The description of the assignment
+    #       required: true
+    #       type: string
+    #     - name: assignmentType
+    #       in: body
+    #       description: The assignment type of the assignment
+    #       required: true
+    #       type: string
+    #     - name: duration
+    #       in: body
+    #       description: The duration of the assignment
+    #       required: true
+    #       type: number
+    #     - name: tags
+    #       in: query
+    #       description: The tags tied to the assignment
+    #       required: true
+    #       type: array
+    #       items:
+    #         type: string
+    #   responses:
+    #     "200":
+    #       description: A list of Assignments
+    #       schema:
+    #         $ref: "#/definitions/Assignments"
+    #     # responses may fall through to errors
+    #     default:
+    #       description: Error
+    #       schema:
+    #         $ref: "#/definitions/ErrorResponse"
+            
+  # /assignments/{id}:
+  #   put:
+  #     summary: Update a movie
+  #     consumes:
+  #       - application/json 
+  #     produces:
+  #       - application/json 
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         type: number
+  #         description: The id of the movie you want to update.
+  #         required: true
+  #       - in: body
+  #         name: movie
+  #         description: The movie you want update with.
+  #         required: true
+  #         schema:
+  #           $ref: '#/definitions/Movie'
+  #     responses:
+  #       200:
+  #         description: The movie has been successfully updated.
+  #         schema:
+  #           $ref: '#/definitions/Message'
+      
+    
+# complex objects have schema definitions
+definitions:
+  Assignments:
+    required:
+      - assignments
+    properties:
+      assignments:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            assignmentType:
+              type: string
+            duration:
+              type: number
+            tags:
+              type: array
+              items:
+                type: string
+  ErrorResponse:
+    required:
+      - assignments
+    properties:
+      assignments:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            assignmentType:
+              type: string
+            duration:
+              type: number
+            tags:
+              type: array
+              items:
+                type: string
